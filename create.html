@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Styles and Design</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="logincss.css">
+        <link rel="stylesheet" href="createcss.css">
+        <link rel="stylesheet" href="sidebarcss.css">
+    </head>
+    
+    <body>
+
+
+        <!-- =========================
+             SIDEBAR
+             ========================= -->
+
+        <nav>
+
+            <div class="sidebar">
+
+                <div class="logoq">
+          <img src="webq.png" class="logo-img" alt="Styles and Design Logo">
+          <div style="margin-top:6px;font-weight:bold">𝓢𝓽𝔂𝓵𝓮𝓼 & 𝓓𝓮𝓼𝓲𝓰𝓷𝓼</div>
+        </div>
+
+
+        <a href="gallery.html" class="nav-btn">Gallery</a>
+        <a href="profile.html" class="nav-btn">Profile</a>
+        <a href="index.html" class="nav-btn">Saved</a>
+        <a href="create.html" class="nav-btn">Create</a>
+        <a href="welcome.html" class="nav-btn">❓ How it works</a>
+        <button id="openLogin" class="nav-btn" type="button">Log in</button>
+                <button id="settings-btn" class="settings-btn">
+    ⚙ Settings
+</button>
+
+<div id="settings-dropdown" class="settings-dropdown hidden">
+
+    <h4>Theme</h4>
+
+    <div class="theme-options">
+        <button id="pink-btn">🌸 Pink</button>
+        <button id="light-btn">☀️ Light</button>
+        <button id="dark-btn">🌙 Dark</button>
+    </div>
+
+    <label class="custom-color">
+        🎨 Custom
+        <input type="color" id="color-picker" value="#f279a8">
+    </label>
+
+</div>
+            </div>
+
+        </nav>
+
+
+
+        <!-- =========================
+             CREATE CONTENT
+             ========================= -->
+
+        <main class="content">
+
+
+            <!-- PAGE TITLE -->
+
+            <div class="page-title">
+
+                <small>
+                    CREATE
+                </small>
+
+                <h1>
+                    Share Your Art
+                </h1>
+
+                <p>
+                    Upload your artwork and share it with
+                    the Styles & Design community.
+                </p>
+
+            </div>
+
+
+
+            <!-- CREATE AREA -->
+
+            <div class="create-container">
+
+
+                <!-- =========================
+                     UPLOAD SECTION
+                     ========================= -->
+
+                <section class="upload-section">
+
+                    <div class="upload-icon">
+                        +
+                    </div>
+
+                    <h2>
+                        Upload Artwork
+                    </h2>
+
+                    <p>
+                        Choose an image from your computer.
+                    </p>
+
+                    <input
+                        type="file"
+                        class="file-input"
+                        accept="image/*"
+                    >
+
+                </section>
+
+
+
+                <!-- =========================
+                     ARTWORK INFORMATION
+                     ========================= -->
+
+                <section class="art-form">
+
+                    <h2>
+                        Artwork Information
+                    </h2>
+
+
+                    <!-- TITLE -->
+
+                    <div class="form-group">
+
+                        <label for="title">
+                            Artwork Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            placeholder="Enter artwork title"
+                        >
+
+                    </div>
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Tell people about your artwork..."
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select id="category">
+
+                            <option value="">
+                                Select a category
+                            </option>
+
+                            <option>
+                                Digital
+                            </option>
+
+                            <option>
+                                Traditional
+                            </option>
+
+                            <option>
+                                Sketch
+                            </option>
+
+                            <option>
+                                Painting
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- TAGS -->
+
+                    <div class="form-group">
+
+                        <label for="tags">
+                            Tags
+                        </label>
+
+                        <input
+                            type="text"
+                            id="tags"
+                            placeholder="#art #drawing #design"
+                        >
+
+                    </div>
+
+
+
+                    <!-- PUBLISH -->
+
+                    <button
+                        class="publish-btn"
+                        type="button"
+                    >
+                        Publish Artwork
+                    </button>
+
+
+                </section>
+
+
+            </div>
+
+
+        </main>
+        
+        <!-- LOGIN / SIGN UP MODAL -->
+  <div id="loginModal" class="login-modal" aria-hidden="true">
+    <div class="login-box">
+      <button id="closeLogin" class="login-close" aria-label="Close">×</button>
+      <h2 id="authTitle">Log in</h2>
+      <p id="authSubtitle">Welcome back, artist!</p>
+
+      <div id="emailGroup" class="input-group hidden">
+        <label for="emailInput">Email</label>
+        <input type="email" id="emailInput" placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" id="usernameInput" placeholder="Enter your username">
+      </div>
+
+      <div class="input-group">
+        <label for="passwordInput">Password</label>
+        <div class="password-box">
+          <input type="password" id="passwordInput" placeholder="Enter your password">
+          <button type="button" id="togglePassword" class="show-password">👁</button>
+        </div>
+      </div>
+
+      <label class="remember-box">
+        <input type="checkbox" id="rememberMe"> Remember me
+      </label>
+
+      <button id="authBtn" class="auth-btn">Log in</button>
+
+      <p class="switch-auth">
+        <span id="switchText">Don't have an account?</span>
+        <button id="switchAuth" class="switch-btn">Sign up</button>
+      </p>
+    </div>
+  </div>
+        <script src="api.js"></script>
+        <script src="loginjs.js"></script>
+        <script src="themejs.js" defer></script>
+        <script src="createjs.js"></script>
+        
+    </body>
+</html>
