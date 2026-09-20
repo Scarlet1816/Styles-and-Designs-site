@@ -267,16 +267,37 @@ body{
 
             }
 
-            @media(max-width:600px){
-
-                .content{
-                    margin-left: var(--sidebar-width); /* Fixed formatting variables */
-
-                    padding:20px;
-                }
-
-                .page-title h1{
-                    font-size:40px;
-                }
-
-            }
+@media(max-width:600px){
+  .content{
+    margin-left: var(--sidebar-width);
+    padding: 15px;
+  }
+  .page-title h1{ font-size: 32px; }
+  .page-title small{ font-size: 12px; letter-spacing: 2px; }
+  .page-title p{ font-size: 14px; }
+  .create-container{
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .upload-section{
+    min-height: 280px;
+    padding: 20px;
+  }
+  .upload-icon{
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+  .art-form{ padding: 18px; }
+  .art-form h2{ font-size: 20px; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select{
+    padding: 10px;
+    font-size: 14px;
+  }
+  .publish-btn{
+    padding: 12px;
+    font-size: 15px;
+  }
+}
