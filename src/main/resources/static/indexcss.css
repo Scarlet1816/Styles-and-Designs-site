@@ -620,24 +620,49 @@ body {
    RESPONSIVE MODAL
    ========================= */
 
-@media(max-width:850px){
-
-    .art-modal-content{
-        grid-template-columns:1fr;
-
-        max-height:90vh;
-
-        overflow-y:auto;
-    }
-
-    .modal-image{
-        min-height:350px;
-        height:350px;
-    }
+@media (max-width: 850px){
+  .art-modal{
+    padding: 15px;
+  }
+  .art-modal-content{
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 92%;
+  }
+  .modal-image{
+    min-height: 200px;
+    height: 220px;
+    max-height: 40vh;
+  }
+  .modal-info{ padding: 18px; }
+  .modal-info h2{ font-size: 22px; }
+  .close-modal{
+    right: 8px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+    z-index: 20;
+  }
 }
 
 @media (max-width: 600px){
-  .saved-card img{ height: 180px; }
-  .saved-info h3{ font-size: 16px; }
-  .saved-info{ padding: 10px; }
+  .content{
+    margin-left: var(--sidebar-width);
+    padding: 15px;
+  }
+  .page-title h1{ font-size: 32px; }
+  .page-title small{ font-size: 12px; letter-spacing: 2px; }
+  .page-title p{ font-size: 14px; }
+  .saved-grid{
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .saved-card img{ height: 200px; }
+  .saved-info h3{ font-size: 17px; }
+  .saved-info{ padding: 12px; }
+  .saved-action-btn{ padding: 10px 16px; font-size: 14px; }
+  .saved-message h2{ font-size: 20px; }
+  .saved-message{ padding: 25px; }
 }
