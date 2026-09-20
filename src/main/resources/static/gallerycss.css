@@ -172,7 +172,41 @@ body{
   .page-title h1{ font-size: 28px; }
   .page-title p{ font-size: 13px; }
 }
-
+@media (max-width: 600px){
+  .art-modal{
+    padding: 0;
+    margin: 0;
+    padding-left: 0;
+  }
+  .art-modal-content{
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  .modal-image{
+    height: 45vh;
+    min-height: 200px;
+    max-height: 45vh;
+    object-fit: contain;
+  }
+  .modal-info{
+    padding: 15px;
+    overflow-y: auto;
+  }
+  .close-modal{
+    right: 10px;
+    top: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+    z-index: 20;
+  }
+}
 @media (max-width: 600px){
   .content{
     margin-left: 0;
