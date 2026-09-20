@@ -270,10 +270,14 @@ body{
 }
 .my-art-modal-link:hover{ background: var(--accent-dark); color: #fff; }
 @media (max-width: 600px){
-  .art-grid{
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
+ .art-grid{
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.art-card img{ height: 140px; }
+.art-info{ padding: 10px; }
+.art-info h3{ font-size: 14px; margin-bottom: 3px; }
+.art-info p{ font-size: 12px; }
   .profile-header{
     padding: 20px 15px;
     gap: 15px;
