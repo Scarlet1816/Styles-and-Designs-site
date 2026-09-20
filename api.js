@@ -7,7 +7,7 @@
 (function () {
   "use strict";
 
-  const BASE = "http://localhost:8080/WebsitQjava/api";
+  const BASE = "/api";
 
   let cachedPosts = null;
   let inflight = null;
