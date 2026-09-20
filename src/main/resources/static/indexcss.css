@@ -666,3 +666,11 @@ body {
   .saved-message h2{ font-size: 20px; }
   .saved-message{ padding: 25px; }
 }
+
+@media (max-width: 600px){
+  .content{
+    margin-left: 0;
+    margin-top: 55px;
+    padding: 15px;
+  }
+}
