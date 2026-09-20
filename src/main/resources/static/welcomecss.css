@@ -111,9 +111,20 @@ body{
 @media(max-width: 600px){
   .content{
     margin-left: var(--sidebar-width);
-    padding: 20px;
+    padding: 15px;
   }
-  .page-title h1{
-    font-size: 36px;
+  .page-title h1{ font-size: 30px; }
+  .page-title small{ font-size: 12px; letter-spacing: 2px; }
+  .page-title p{ font-size: 14px; }
+  .steps-grid{
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .step-card{ padding: 18px; }
+  .step-card h2{ font-size: 18px; }
+  .step-card p{ font-size: 14px; }
+  .get-started-btn{
+    padding: 12px 18px;
+    font-size: 15px;
   }
 }
