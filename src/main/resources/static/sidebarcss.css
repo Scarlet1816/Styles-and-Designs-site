@@ -141,9 +141,23 @@
 
 /* Responsive adjustments for sidebar width */
 @media (max-width: 600px){
-  :root{ --sidebar-width: 130px; }
-  .sidebar{ width: var(--sidebar-width); }
-  .nav-btn{ width: 100px; }
+  :root{ --sidebar-width: 100px; }
+  .sidebar{ width: var(--sidebar-width); padding-top: 15px; }
+  .nav-btn{
+    width: 85px;
+    height: 42px;
+    font-size: 13px;
+    margin: 8px 0;
+  }
+  .logoq img, .logo-img{
+    width: 55px;
+    height: 55px;
+  }
+  .settings-btn{
+    width: 85px;
+    height: 38px;
+    font-size: 12px;
+  }
 }
 /* =========================
    SETTINGS BUTTON
