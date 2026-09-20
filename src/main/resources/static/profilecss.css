@@ -206,14 +206,6 @@ body{
   .art-grid{ grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 600px){
-  :root{ --sidebar-width: 130px; }
-  .sidebar{ width: var(--sidebar-width); }
-  .nav-btn{ width: 100px; }
-  .content{ margin-left: var(--sidebar-width); padding: 20px; }
-  .art-grid{ grid-template-columns: 1fr; }
-}
-
 /* Small utility helpers */
 .hidden{ display: none !important; }
 .center{ display: flex; align-items: center; justify-content: center; }
@@ -277,9 +269,53 @@ body{
   font-weight: 700;
 }
 .my-art-modal-link:hover{ background: var(--accent-dark); color: #fff; }
-@media(max-width:600px){
+@media (max-width: 600px){
+  .content{
+    margin-left: var(--sidebar-width);
+    padding: 15px;
+  }
+  .art-grid{
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .profile-header{
+    padding: 20px 15px;
+    gap: 15px;
+  }
+  .profile-picture{
+    width: 100px;
+    height: 100px;
+  }
+  .profile-info h1{
+    font-size: 26px;
+  }
+  .username{
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .bio{
+    font-size: 14px;
+  }
+  .profile-stats{
+    gap: 18px;
+    margin-top: 15px;
+    justify-content: center;
+  }
+  .stat strong{ font-size: 18px; }
+  .stat span{ font-size: 12px; }
+  .edit-btn{
+    padding: 10px 16px;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 15px;
+  }
+  .art-card img{ height: 180px; }
+  .my-art h2{ font-size: 22px; }
   .my-art-modal-image{ height: 220px; }
   .my-art-modal-info{ padding: 18px; }
+  .modal-dialog{ padding: 14px; }
+  .modal-form input,
+  .modal-form textarea{ font-size: 13px; }
 }
 
 /* Modal base */
