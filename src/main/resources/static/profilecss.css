@@ -270,10 +270,6 @@ body{
 }
 .my-art-modal-link:hover{ background: var(--accent-dark); color: #fff; }
 @media (max-width: 600px){
-  .content{
-    margin-left: var(--sidebar-width);
-    padding: 15px;
-  }
   .art-grid{
     grid-template-columns: 1fr;
     gap: 15px;
