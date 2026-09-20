@@ -109,10 +109,6 @@ body{
 }
 
 @media(max-width: 600px){
-  .content{
-    margin-left: var(--sidebar-width);
-    padding: 15px;
-  }
   .page-title h1{ font-size: 30px; }
   .page-title small{ font-size: 12px; letter-spacing: 2px; }
   .page-title p{ font-size: 14px; }
