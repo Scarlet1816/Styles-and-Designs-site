@@ -279,34 +279,34 @@
 
   /* Settings button — align with other nav items on mobile */
   .settings-btn{
-    width: auto;
-    height: 34px;
-    margin: 0 12px 0 0;
-    padding: 0 10px;
-    font-size: 12px;
-    border-width: 2px;
-    flex-shrink: 0;
-    /* Override desktop 'margin-top: auto' which pushed the button down */
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+  width: 120px;
+  height: 55px; /* match nav-btn height */
+  margin: 12px 0; /* same margin as nav-btn */
+  border: 3px solid var(--border-color);
+  background: var(--accent);
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
 
   /* Settings dropdown — fixed full width below nav */
   .settings-dropdown{
-    position: fixed;
-    left: 10px;
-    right: 10px;
-    top: 65px;
-    bottom: auto;
-    width: auto;
-    max-width: calc(100vw - 20px);
-    max-height: calc(100vh - 90px);
-    overflow-y: auto;
-    padding: 14px;
-    /* Higher than sidebar (2000) so it sits on top of everything */
-    z-index: 3000;
-    box-shadow: 4px 4px 0 var(--border-color);
-  }
+  position: fixed;
+  left: calc(var(--sidebar-width) + 10px);
+  bottom: 25px;
+  width: 210px;
+  background: var(--sidebar-bg);
+  color: var(--text-color);
+  border: 3px solid var(--border-color);
+  padding: 15px;
+  box-shadow: 5px 5px 0 var(--border-color);
+  z-index: 3000; /* higher than sidebar */
+}
 
   .settings-dropdown.hidden{
     display: none;
