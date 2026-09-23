@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styles and Design</title>
+  <link rel="stylesheet" href="logincss.css">
+  <link rel="stylesheet" href="indexcss.css">
+  <link rel="stylesheet" href="sidebarcss.css">
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <nav>
+    <div class="sidebar">
+      <div class="logoq">
+          <img src="webq.png" class="logo-img" alt="Styles and Design Logo">
+          <div style="margin-top:6px;font-weight:bold">𝓢𝓽𝔂𝓵𝓮𝓼 & 𝓓𝓮𝓼𝓲𝓰𝓷𝓼</div>
+        </div>
+        <a href="index.html" class="nav-btn">Gallery</a>
+        <a href="profile.html" class="nav-btn">Profile</a>
+        <a href="saved.html" class="nav-btn">Saved</a>
+        <a href="create.html" class="nav-btn">Create</a>
+        <a href="welcome.html" class="nav-btn">❓ How it works</a>
+        <button id="openLogin" class="nav-btn" type="button">Log in</button>
+      <button id="settings-btn" class="settings-btn">
+    ⚙ Settings
+</button>
+
+<div id="settings-dropdown" class="settings-dropdown hidden">
+
+    <h4>Theme</h4>
+
+    <div class="theme-options">
+        <button id="pink-btn">🌸 Pink</button>
+        <button id="light-btn">☀️ Light</button>
+        <button id="dark-btn">🌙 Dark</button>
+    </div>
+
+    <label class="custom-color">
+        🎨 Custom
+        <input type="color" id="color-picker" value="#f279a8">
+    </label>
+
+</div>
+    </div>
+  </nav>
+
+  <!-- GALLERY CONTENT -->
+  <main class="content">
+    <div class="page-title">
+      <small>EXPLORE</small>
+      <h1>Gallery</h1>
+      <p>Discover artwork from different artists.</p>
+    </div>
+
+    <!-- SEARCH AND FILTER -->
+    <div class="gallery-tools">
+      <input id="searchBox" class="search-box" type="text" placeholder="Search artwork...">
+      <button class="filter-btn active" data-filter="All">All</button>
+      <button class="filter-btn" data-filter="Digital">Digital</button>
+      <button class="filter-btn" data-filter="Traditional">Traditional</button>
+      <button class="filter-btn" data-filter="Sketch">Sketch</button>
+      <button class="filter-btn" data-filter="Painting">Painting</button>
+    </div>
+
+    <!-- ARTWORK GRID -->
+    <div id="galleryGrid" class="gallery-grid">
+      <div class="gallery-card" data-art-id="art1" data-category="Digital" data-title="Artwork One" data-artist="@artistone">
+        <img src="" alt="Artwork One">
+        <div class="gallery-info">
+          <h3>Artwork One</h3>
+          <a class="artist-name" href="profile.html">@artistone</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">24</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">2</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-art-id="art2" data-category="Painting" data-title="Dreamscape" data-artist="@artisttwo">
+        <img src="" alt="Dreamscape">
+        <div class="gallery-info">
+          <h3>Dreamscape</h3>
+          <a class="artist-name" href="profile.html">@artisttwo</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">41</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">1</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-art-id="art3" data-category="Sketch" data-title="Character Study" data-artist="@artistthree">
+        <img src="" alt="Character Study">
+        <div class="gallery-info">
+          <h3>Character Study</h3>
+          <a class="artist-name" href="profile.html">@artistthree</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">17</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">0</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-art-id="art4" data-category="Traditional" data-title="Summer" data-artist="@artistfour">
+        <img src="" alt="Summer">
+        <div class="gallery-info">
+          <h3>Summer</h3>
+          <a class="artist-name" href="profile.html">@artistfour</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">32</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">0</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-art-id="art5" data-category="Painting" data-title="Nature" data-artist="@artistfive">
+        <img src="" alt="Nature">
+        <div class="gallery-info">
+          <h3>Nature</h3>
+          <a class="artist-name" href="profile.html">@artistfive</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">56</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">0</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-art-id="art6" data-category="Traditional" data-title="Portrait" data-artist="@artistsix">
+        <img src="" alt="Portrait">
+        <div class="gallery-info">
+          <h3>Portrait</h3>
+          <a class="artist-name" href="profile.html">@artistsix</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">29</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">0</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-art-id="art7" data-category="Digital" data-title="Color Study" data-artist="@artistseven">
+        <img src="" alt="Color Study">
+        <div class="gallery-info">
+          <h3>Color Study</h3>
+          <a class="artist-name" href="profile.html">@artistseven</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">38</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">0</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-art-id="art8" data-category="Sketch" data-title="Untitled" data-artist="@artisteight">
+        <img src="" alt="Untitled">
+        <div class="gallery-info">
+          <h3>Untitled</h3>
+          <a class="artist-name" href="profile.html">@artisteight</a>
+          <div class="art-stats">
+            <button class="like-btn">♥ <span class="like-count">21</span></button>
+            <button class="comment-btn">💬 <span class="comment-count">0</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p id="noResults" class="no-results">No artworks found.</p>
+  </main>
+
+  <!-- SINGLE MODAL -->
+  <div id="artModal" class="art-modal" aria-hidden="true">
+    <div class="art-modal-content" role="dialog" aria-modal="true">
+      <button class="close-modal" id="closeModal" aria-label="Close">×</button>
+      <img id="modalImage" class="modal-image" src="" alt="Artwork">
+      <div class="modal-info">
+        <h2 id="modalTitle">Artwork Title</h2>
+        <a id="modalArtist" class="modal-artist" href="#">@artist</a>
+        <p id="modalDescription" class="modal-description">Artwork description.</p>
+        <div class="modal-stats">
+          <button id="modalLikeBtn" class="modal-like-btn">♥ <span id="modalLikes">0</span></button>
+          <button id="modalSaveBtn" class="modal-save-btn">🔖 Save</button>
+          <button id="modalShareBtn" class="modal-share-btn">↗ Share</button>
+        </div>
+        <div class="modal-comments">
+          <h3>Comments</h3>
+          <div id="modalCommentList" class="modal-comment-list"></div>
+          <input id="modalCommentInput" class="modal-comment-input" placeholder="Write a comment...">
+          <button id="modalPost" class="modal-post">Post Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN / SIGN UP MODAL -->
+  <div id="loginModal" class="login-modal" aria-hidden="true">
+    <div class="login-box">
+      <button id="closeLogin" class="login-close" aria-label="Close">×</button>
+      <h2 id="authTitle">Log in</h2>
+      <p id="authSubtitle">Welcome back, artist!</p>
+
+      <div id="emailGroup" class="input-group hidden">
+        <label for="emailInput">Email</label>
+        <input type="email" id="emailInput" placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" id="usernameInput" placeholder="Enter your username">
+      </div>
+
+      <div class="input-group">
+        <label for="passwordInput">Password</label>
+        <div class="password-box">
+          <input type="password" id="passwordInput" placeholder="Enter your password">
+          <button type="button" id="togglePassword" class="show-password">👁</button>
+        </div>
+      </div>
+
+      <label class="remember-box">
+        <input type="checkbox" id="rememberMe"> Remember me
+      </label>
+
+      <button id="authBtn" class="auth-btn">Log in</button>
+
+      <p class="switch-auth">
+        <span id="switchText">Don't have an account?</span>
+        <button id="switchAuth" class="switch-btn">Sign up</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="api.js"></script>
+  <script src="indexjs.js"></script>
+  <script src="loginjs.js"></script>
+  <script src="themejs.js" defer></script>
+</body>
+</html>
