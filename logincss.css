@@ -1,0 +1,273 @@
+/* =========================================================
+   logincss.css — LOGIN / SIGN UP modal
+   Depends on theme variables from sidebarcss.css
+   FIX: modal z-index above sidebar + mobile-safe close button
+   Layout: on mobile the sidebar is a drawer, so no left offset.
+   ========================================================= */
+
+/* =========================
+   LOGIN MODAL BACKDROP
+   ========================= */
+.login-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1550;              /* above sidebar (1100) */
+  background: rgba(0, 0, 0, 0.65);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-modal.show {
+  display: flex;
+}
+
+/* =========================
+   LOGIN BOX
+   ========================= */
+.login-box {
+  width: 360px;
+  max-width: 100%;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: var(--card-bg);
+  border: 4px solid var(--border-color);
+  box-shadow: 8px 8px 0 var(--border-color);
+  color: var(--text-color);
+  padding: 30px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.login-box h2 {
+  font-size: 32px;
+  margin: 0 0 5px;
+}
+
+.login-box > p {
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+/* =========================
+   CLOSE BUTTON
+   ========================= */
+.login-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  z-index: 5;
+}
+
+.login-close:hover {
+  background: var(--accent);
+}
+
+.login-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 15px;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  background: var(--sidebar-bg);
+}
+
+.input-group input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* =========================
+   PASSWORD FIELD
+   ========================= */
+.password-box {
+  display: flex;
+}
+
+.password-box input {
+  flex: 1;
+  border-right: none;
+}
+
+.show-password {
+  width: 48px;
+  border: 3px solid var(--border-color);
+  background: var(--sidebar-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 17px;
+  font-family: inherit;
+}
+
+.show-password:hover {
+  background: var(--accent);
+}
+
+/* =========================
+   REMEMBER ME
+   ========================= */
+.remember-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.remember-box input {
+  width: 16px;
+  height: 16px;
+}
+
+/* =========================
+   AUTH BUTTON
+   ========================= */
+.auth-btn {
+  width: 100%;
+  padding: 13px;
+  border: 3px solid var(--border-color);
+  background: var(--accent);
+  color: var(--text-color);
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.auth-btn:hover {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.auth-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================
+   SWITCH LOGIN / SIGN UP
+   ========================= */
+.switch-auth {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.switch-btn {
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 0;
+}
+
+.switch-btn:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   GENERIC UTILITIES
+   ========================= */
+.hidden {
+  display: none !important;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 15px;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  background: var(--sidebar-bg);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* =========================
+   MOBILE FIX (Option C)
+   =========================
+   On mobile the sidebar is a slide-in drawer, so we no longer
+   need to pad the left. The close button pins just below the
+   mobile top bar.
+   ========================= */
+@media (max-width: 700px) {
+
+  .login-modal {
+    padding: 15px;
+    padding-top: calc(var(--topbar-height) + 20px);  /* leave room for the fixed close button + top bar */
+    align-items: flex-start;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    padding: 25px 20px;
+  }
+
+  .login-box h2 {
+    font-size: 26px;
+  }
+
+  .login-close {
+    position: fixed;                                  /* stick to viewport, not modal */
+    top: calc(var(--topbar-height) + 10px);
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
+    z-index: 1600;                                    /* above everything */
+    box-shadow: 4px 4px 0 var(--border-color);
+  }
+}

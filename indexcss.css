@@ -1,0 +1,521 @@
+/* =========================================================
+   indexcss.css — Gallery page
+   Depends on theme variables from sidebarcss.css
+   FIX: art modal z-index above sidebar + mobile-safe close button
+   Layout: content sits below the top bar on mobile (see sidebarcss.css)
+   ========================================================= */
+
+/* =========================
+   RESET / BASE
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-family);
+  background: var(--page-bg);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+/* =========================
+   CONTENT POSITION
+   ========================= */
+.content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+/* =========================
+   PAGE TITLE
+   ========================= */
+.page-title small {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.page-title h1 {
+  font-size: 55px;
+  margin-top: 8px;
+}
+
+.page-title p {
+  color: var(--text-muted);
+}
+
+/* =========================
+   SEARCH + FILTERS
+   ========================= */
+.gallery-tools {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  width: 300px;
+  padding: 13px 15px;
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 16px;
+  outline: none;
+  font-family: inherit;
+}
+
+.search-box:focus {
+  background: var(--sidebar-bg);
+}
+
+.search-box::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.filter-btn {
+  padding: 12px 18px;
+  border: 3px solid var(--border-color);
+  background: var(--sidebar-bg);
+  color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.filter-btn:hover {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.filter-btn.active {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.filter-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================
+   GALLERY GRID
+   ========================= */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.gallery-card {
+  background: var(--card-bg);
+  border: 3px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 5px 5px 0 var(--border-color);
+  transition: 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.gallery-card:hover {
+  transform: translateY(-7px);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  background: var(--sidebar-bg);
+}
+
+.gallery-info {
+  padding: 15px;
+}
+
+.gallery-info h3 {
+  margin: 0 0 5px;
+  font-size: 19px;
+  color: var(--text-color);
+}
+
+.artist-name {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.artist-name:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* =========================
+   STATS / BUTTONS
+   ========================= */
+.art-stats,
+.modal-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: bold;
+  gap: 10px;
+  align-items: center;
+}
+
+.like-btn,
+.comment-btn,
+.modal-like-btn,
+.modal-save-btn {
+  border: none;
+  background: none;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px;
+  font-family: inherit;
+}
+
+.like-btn:hover,
+.modal-like-btn:hover {
+  color: var(--accent);
+}
+
+.like-btn.liked,
+.modal-like-btn.liked {
+  color: var(--accent);
+}
+
+.modal-save-btn {
+  border: 3px solid var(--border-color);
+  background: none;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.modal-save-btn.saved {
+  color: var(--accent);
+}
+
+.modal-share-btn {
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px 10px;
+  font-family: inherit;
+}
+
+.modal-share-btn:hover {
+  background: var(--accent);
+}
+
+/* =========================
+   ART MODAL BACKDROP
+   ========================= */
+.art-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: rgba(0, 0, 0, 0.75);
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.art-modal.show {
+  display: flex;
+}
+
+/* =========================
+   ART MODAL CONTENT
+   ========================= */
+.art-modal-content {
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  background: var(--card-bg);
+  border: 4px solid var(--border-color);
+  box-shadow: 10px 10px 0 var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+  color: var(--text-color);
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  max-height: 85vh;
+  object-fit: contain;
+  background: #111;
+}
+
+.modal-image.zoomed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 2500;
+  cursor: zoom-out;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-info {
+  padding: 30px;
+  overflow-y: auto;
+  color: var(--text-color);
+}
+
+.modal-info h2 {
+  font-size: 30px;
+  margin: 0 0 8px;
+}
+
+.modal-artist {
+  display: inline-block;
+  color: var(--text-muted);
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.modal-artist:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.modal-description {
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.modal-comments h3 {
+  margin-bottom: 12px;
+}
+
+.modal-comment-list {
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.modal-comment {
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  margin-bottom: 7px;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.modal-comment-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  margin-bottom: 7px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.modal-comment-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.modal-post {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent);
+  border: 3px solid var(--border-color);
+  color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.modal-post:hover {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+/* =========================
+   CLOSE BUTTON
+   ========================= */
+.close-modal {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  background: var(--accent);
+}
+
+.close-modal:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================
+   NO RESULTS
+   ========================= */
+.no-results {
+  display: none;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   RESPONSIVE — TABLET
+   ========================= */
+@media (max-width: 1100px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .art-modal-content {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-image {
+    min-height: 350px;
+    height: 350px;
+  }
+}
+
+/* =========================
+   RESPONSIVE — PHONE (modal fix)
+   Layout: content sits below the mobile top bar (no margin-left).
+   ========================= */
+@media (max-width: 700px) {
+
+  /* No left margin — the top bar handles the offset (see sidebarcss.css) */
+  .content {
+    margin-left: 0;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .page-title h1 {
+    font-size: 40px;
+  }
+
+  /* ---------- ART MODAL: full width, no sidebar offset ---------- */
+  .art-modal {
+    padding: 15px;
+    padding-top: calc(var(--topbar-height) + 20px);
+    align-items: flex-start;
+  }
+
+  .art-modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    grid-template-columns: 1fr;
+    overflow-y: visible;
+  }
+
+  .modal-image {
+    min-height: 220px;
+    height: auto;
+    max-height: 45vh;
+  }
+
+  .modal-info {
+    padding: 20px;
+    overflow-y: visible;
+  }
+
+  .modal-info h2 {
+    font-size: 22px;
+  }
+
+  .modal-stats {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ---------- CLOSE BUTTON: pin to viewport ---------- */
+  .close-modal {
+    position: fixed;
+    top: calc(var(--topbar-height) + 10px);
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
+    z-index: 1600;
+    box-shadow: 4px 4px 0 var(--border-color);
+  }
+
+  .no-results {
+    font-size: 16px;
+  }
+}

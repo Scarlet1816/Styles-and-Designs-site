@@ -1,0 +1,171 @@
+/* =========================================================
+   welcomecss.css — How it works page
+   Depends on theme variables from sidebarcss.css
+   Layout: on mobile the sidebar is a drawer (see sidebarcss.css)
+   ========================================================= */
+
+/* =========================
+   RESET / BASE
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-family);
+  background: var(--page-bg);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+/* =========================
+   CONTENT POSITION
+   ========================= */
+.content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+/* =========================
+   PAGE TITLE
+   ========================= */
+.page-title {
+  margin-bottom: 35px;
+}
+
+.page-title small {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.page-title h1 {
+  font-size: 50px;
+  margin: 8px 0 10px;
+}
+
+.page-title p {
+  font-size: 17px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* =========================
+   STEPS GRID
+   ========================= */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  max-width: 900px;
+  margin-bottom: 40px;
+}
+
+.step-card {
+  background: var(--card-bg);
+  border: 3px solid var(--border-color);
+  box-shadow: 5px 5px 0 var(--border-color);
+  padding: 25px;
+  color: var(--text-color);
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.step-card h2 {
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+
+.step-card p {
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* =========================
+   GET STARTED BUTTON
+   ========================= */
+.get-started-btn {
+  display: inline-block;
+  padding: 14px 25px;
+  background: var(--accent);
+  color: var(--text-color);
+  border: 3px solid var(--border-color);
+  text-decoration: none;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: 16px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.get-started-btn:hover {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.get-started-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================
+   RESPONSIVE — TABLET
+   ========================= */
+@media (max-width: 750px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   RESPONSIVE — PHONE (Option C)
+   Content sits below the mobile top bar. Sidebar is a drawer.
+   ========================= */
+@media (max-width: 700px) {
+
+  /* No left margin — top bar handles the offset via padding-top */
+  .content {
+    margin-left: 0;
+  }
+
+  .page-title h1 {
+    font-size: 36px;
+  }
+
+  .step-card {
+    padding: 20px;
+  }
+
+  .get-started-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

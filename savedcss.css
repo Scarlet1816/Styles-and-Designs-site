@@ -1,0 +1,522 @@
+/* =========================================================
+   savedcss.css — Saved Art page
+   Depends on theme variables from sidebarcss.css
+   FIX: art modal z-index above sidebar + mobile-safe close button
+   Layout: on mobile the sidebar is a drawer (see sidebarcss.css)
+   ========================================================= */
+
+/* =========================
+   RESET / BASE
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-family);
+  background: var(--page-bg);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+/* =========================
+   CONTENT POSITION
+   ========================= */
+.content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+/* =========================
+   PAGE TITLE
+   ========================= */
+.page-title {
+  margin-bottom: 35px;
+}
+
+.page-title small {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.page-title h1 {
+  font-size: 55px;
+  margin: 8px 0 10px;
+  line-height: 1;
+}
+
+.page-title p {
+  font-size: 17px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* =========================
+   SAVED GRID
+   ========================= */
+.saved-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* =========================
+   SAVED CARD
+   ========================= */
+.saved-card {
+  background: var(--card-bg);
+  border: 3px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 5px 5px 0 var(--border-color);
+  transition: 0.2s;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.saved-card:hover {
+  transform: translateY(-7px);
+}
+
+.saved-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  background: var(--sidebar-bg);
+}
+
+.saved-info {
+  padding: 15px;
+}
+
+.saved-info h3 {
+  margin: 0 0 5px;
+  font-size: 19px;
+  color: var(--text-color);
+}
+
+.saved-artist {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.saved-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   UNSAVE BUTTON
+   ========================= */
+.unsave-btn {
+  border: 3px solid var(--border-color);
+  background: var(--accent);
+  color: var(--text-color);
+  padding: 7px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.unsave-btn:hover {
+  background: var(--accent-dark);
+  color: white;
+}
+
+.unsave-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================
+   EMPTY / LOGIN MESSAGES
+   ========================= */
+.saved-message {
+  max-width: 700px;
+  margin-top: 30px;
+  padding: 40px;
+  text-align: center;
+  background: var(--card-bg);
+  border: 3px solid var(--border-color);
+  box-shadow: 5px 5px 0 var(--border-color);
+  color: var(--text-color);
+}
+
+.saved-message h2 {
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+
+.saved-message p {
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+/* =========================
+   ACTION BUTTON / LINK
+   ========================= */
+.saved-action-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: var(--text-color);
+  border: 3px solid var(--border-color);
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+  font-size: 15px;
+  appearance: none;
+  -webkit-appearance: none;
+  line-height: 1.2;
+}
+
+.saved-action-btn:hover {
+  background: var(--accent-dark);
+  color: white;
+}
+
+/* =========================
+   HIDDEN UTILITY
+   ========================= */
+.hidden {
+  display: none !important;
+}
+
+/* =========================
+   ART MODAL BACKDROP
+   ========================= */
+.art-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: rgba(0, 0, 0, 0.75);
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.art-modal.show {
+  display: flex;
+}
+
+/* =========================
+   ART MODAL CONTENT
+   ========================= */
+.art-modal-content {
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  background: var(--card-bg);
+  border: 4px solid var(--border-color);
+  box-shadow: 10px 10px 0 var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+  color: var(--text-color);
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  max-height: 85vh;
+  object-fit: contain;
+  background: #111;
+}
+
+.modal-info {
+  padding: 30px;
+  overflow-y: auto;
+  color: var(--text-color);
+}
+
+.modal-info h2 {
+  font-size: 30px;
+  margin: 0 0 8px;
+}
+
+.modal-artist {
+  display: inline-block;
+  color: var(--text-muted);
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.modal-artist:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.modal-description {
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* =========================
+   MODAL BUTTONS
+   ========================= */
+.modal-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.modal-like-btn {
+  border: none;
+  background: none;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px;
+  font-family: inherit;
+}
+
+.modal-like-btn:hover {
+  color: var(--accent);
+}
+
+.modal-like-btn.liked {
+  color: var(--accent);
+}
+
+.modal-save-btn,
+.modal-share-btn {
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px 10px;
+  font-family: inherit;
+}
+
+.modal-save-btn:hover,
+.modal-share-btn:hover {
+  background: var(--accent);
+}
+
+.modal-save-btn.saved {
+  color: var(--accent);
+}
+
+/* =========================
+   COMMENTS
+   ========================= */
+.modal-comments h3 {
+  margin-bottom: 12px;
+}
+
+.modal-comment-list {
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.modal-comment {
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  margin-bottom: 7px;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.modal-comment-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  margin-bottom: 7px;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.modal-comment-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.modal-post {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent);
+  border: 3px solid var(--border-color);
+  color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.modal-post:hover {
+  background: var(--accent-dark);
+  color: white;
+}
+
+/* =========================
+   CLOSE BUTTON
+   ========================= */
+.close-modal {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  background: var(--accent);
+}
+
+.close-modal:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================
+   RESPONSIVE — TABLET
+   ========================= */
+@media (max-width: 1100px) {
+  .saved-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .saved-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .art-modal-content {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-image {
+    min-height: 350px;
+    height: 350px;
+  }
+}
+
+/* =========================
+   RESPONSIVE — PHONE (Option C)
+   Content sits below the mobile top bar. Sidebar is a drawer.
+   ========================= */
+@media (max-width: 700px) {
+
+  /* No left margin — top bar handles the offset via padding-top */
+  .content {
+    margin-left: 0;
+  }
+
+  .page-title h1 {
+    font-size: 40px;
+  }
+
+  .saved-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saved-message {
+    padding: 25px;
+  }
+
+  .saved-message h2 {
+    font-size: 22px;
+  }
+
+  /* ---------- ART MODAL: full width, below the top bar ---------- */
+  .art-modal {
+    padding: 15px;
+    padding-top: calc(var(--topbar-height) + 20px);
+    align-items: flex-start;
+  }
+
+  .art-modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    grid-template-columns: 1fr;
+    overflow-y: visible;
+  }
+
+  .modal-image {
+    min-height: 220px;
+    height: auto;
+    max-height: 45vh;
+  }
+
+  .modal-info {
+    padding: 20px;
+    overflow-y: visible;
+  }
+
+  .modal-info h2 {
+    font-size: 22px;
+  }
+
+  .modal-stats {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ---------- CLOSE BUTTON: pin to viewport, below the top bar ---------- */
+  .close-modal {
+    position: fixed;
+    top: calc(var(--topbar-height) + 10px);
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
+    z-index: 1600;
+    box-shadow: 4px 4px 0 var(--border-color);
+  }
+}

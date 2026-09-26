@@ -1,0 +1,358 @@
+/* =========================================================
+   sidebarcss.css — MASTER STYLESHEET
+   Default theme: Dark + Blue (#149ede)
+   Layout:
+     • Desktop (> 700px)  → vertical fixed sidebar on the left
+     • Mobile  (≤ 700px)  → horizontal top bar with hamburger menu
+   ========================================================= */
+
+/* =========================================================
+   THEME VARIABLES
+   ========================================================= */
+:root {
+  --page-bg:      #0e0e0e;
+  --sidebar-bg:   #1a1a1a;
+  --accent:       #149ede;
+  --accent-dark:  #0f7cae;
+
+  --card-bg:      #1e1e1e;
+  --text-color:   #ffffff;
+  --text-muted:   #aaaaaa;
+  --border-color: #333333;
+
+  --sidebar-width: 180px;
+  --topbar-height: 60px;
+
+  --font-family: Arial, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root[data-theme="blue"] {
+  --page-bg:      #0e0e0e;
+  --sidebar-bg:   #1a1a1a;
+  --accent:       #149ede;
+  --accent-dark:  #0f7cae;
+  --card-bg:      #1e1e1e;
+  --text-color:   #ffffff;
+  --text-muted:   #aaaaaa;
+  --border-color: #333333;
+}
+
+:root[data-theme="pink"] {
+  --page-bg:      #f279a8;
+  --sidebar-bg:   #ffccff;
+  --accent:       #ff99cc;
+  --accent-dark:  #333333;
+  --card-bg:      #ffffff;
+  --text-color:   #000000;
+  --text-muted:   #555555;
+  --border-color: #000000;
+}
+
+:root[data-theme="light"] {
+  --page-bg:      #f5f5f5;
+  --sidebar-bg:   #ffffff;
+  --accent:       #e5e5e5;
+  --accent-dark:  #555555;
+  --card-bg:      #ffffff;
+  --text-color:   #000000;
+  --text-muted:   #555555;
+  --border-color: #000000;
+}
+
+:root[data-theme="dark"] {
+  --page-bg:      #121212;
+  --sidebar-bg:   #222222;
+  --accent:       #444444;
+  --accent-dark:  #111111;
+  --card-bg:      #1e1e1e;
+  --text-color:   #ffffff;
+  --text-muted:   #cccccc;
+  --border-color: #ffffff;
+}
+
+/* =========================================================
+   GLOBAL UTILITY
+   ========================================================= */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* =========================================================
+   SIDEBAR (desktop)
+   ========================================================= */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: var(--sidebar-bg);
+  border-right: 3px solid var(--border-color);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 30px;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  z-index: 1100;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.logoq {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+.logoq img,
+.logo-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border-color);
+  background: var(--card-bg);
+  display: block;
+  margin: 0 auto 12px;
+}
+
+/* =========================================================
+   NAV BUTTONS
+   ========================================================= */
+.nav-btn,
+.settings-btn {
+  width: 120px;
+  height: 55px;
+  margin: 12px 0;
+  border: 3px solid var(--border-color);
+  background: var(--accent);
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.2s;
+  cursor: pointer;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.nav-btn:hover,
+.nav-btn:focus,
+.settings-btn:hover,
+.settings-btn:focus {
+  background: var(--accent-dark);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.nav-btn:focus-visible,
+.settings-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 158, 222, 0.45);
+}
+
+/* =========================================================
+   SETTINGS DROPDOWN
+   Uses position: fixed (not absolute) so it escapes the
+   sidebar's overflow-x: hidden clipping.
+   ========================================================= */
+.settings-dropdown {
+  position: fixed;
+  left: calc(var(--sidebar-width) - 15px);
+  bottom: 25px;
+  width: 210px;
+  max-width: calc(100vw - var(--sidebar-width) - 20px);
+  background: var(--sidebar-bg);
+  color: var(--text-color);
+  border: 3px solid var(--border-color);
+  padding: 15px;
+  box-shadow: 5px 5px 0 var(--border-color);
+  z-index: 1200;
+  box-sizing: border-box;
+}
+
+.settings-dropdown.hidden {
+  display: none;
+}
+
+.settings-dropdown h4 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.theme-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.theme-options button {
+  width: 100%;
+  padding: 8px;
+  background: var(--accent);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.theme-options button:hover {
+  background: var(--accent-dark);
+  color: white;
+}
+
+.custom-color {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#color-picker {
+  width: 35px;
+  height: 30px;
+  padding: 0;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  background: transparent;
+}
+
+/* =========================================================
+   MOBILE TOP BAR (hidden on desktop)
+   ========================================================= */
+.mobile-topbar {
+  display: none;
+}
+
+/* =========================================================
+   MOBILE — top bar + hamburger
+   ========================================================= */
+@media (max-width: 700px) {
+
+  :root {
+    --sidebar-width: 0px;
+  }
+
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--topbar-height);
+
+    background: var(--sidebar-bg);
+    border-bottom: 3px solid var(--border-color);
+    padding: 0 15px;
+    z-index: 1150;
+    box-sizing: border-box;
+  }
+
+  .hamburger {
+    width: 42px;
+    height: 42px;
+    border: 3px solid var(--border-color);
+    background: var(--accent);
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: inherit;
+  }
+
+  .hamburger:hover {
+    background: var(--accent-dark);
+    color: #fff;
+  }
+
+  .mobile-topbar .topbar-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    object-fit: cover;
+    background: var(--card-bg);
+    flex-shrink: 0;
+  }
+
+  .mobile-topbar .topbar-title {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sidebar {
+    width: 240px;
+    max-width: 80vw;
+    top: var(--topbar-height);
+    height: calc(100dvh - var(--topbar-height));
+    padding-top: 20px;
+
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 1140;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.4);
+  }
+
+  body.nav-open .sidebar {
+    transform: translateX(0);
+  }
+
+  body.nav-open::after {
+    content: "";
+    position: fixed;
+    inset: var(--topbar-height) 0 0 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1130;
+  }
+
+  .nav-btn,
+  .settings-btn {
+    width: 85%;
+    font-size: 17px;
+    margin: 8px 0;
+  }
+
+  .logoq {
+    display: none;
+  }
+
+  /* Settings dropdown on mobile — inline inside the drawer */
+  .settings-dropdown {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 10px;
+    box-shadow: none;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-top: calc(var(--topbar-height) + 20px);
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How it works - Styles and Design</title>
+  <link rel="icon" href="webq.png">
+  <link rel="stylesheet" href="sidebarcss.css">
+  <link rel="stylesheet" href="welcomecss.css">
+  <link rel="stylesheet" href="logincss.css">
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <!-- MOBILE TOP BAR (hidden on desktop) -->
+<header class="mobile-topbar">
+  <button id="hamburgerBtn" class="hamburger" type="button" aria-label="Open navigation menu">☰</button>
+  <img src="webq.png" class="topbar-logo" alt="">
+  <span class="topbar-title">𝓢𝓽𝔂𝓵𝓮𝓼 &amp; 𝓓𝓮𝓼𝓲𝓰𝓷𝓼</span>
+</header>
+  <nav aria-label="Main navigation">
+    <div class="sidebar">
+      <div class="logoq">
+        <img src="webq.png" class="logo-img" alt="Styles and Design Logo">
+        <div style="margin-top:6px;">𝓢𝓽𝔂𝓵𝓮𝓼 & 𝓓𝓮𝓼𝓲𝓰𝓷𝓼</div>
+      </div>
+      <a href="index.html" class="nav-btn">Gallery</a>
+      <a href="profile.html" class="nav-btn">Profile</a>
+      <a href="saved.html" class="nav-btn">Saved</a>
+      <a href="create.html" class="nav-btn">Create</a>
+      <a href="welcome.html" class="nav-btn">How it works</a>
+      <button id="openLogin" class="nav-btn" type="button">Log in</button>
+      <button id="settings-btn" class="nav-btn" type="button">⚙ Settings</button>
+
+      <div id="settings-dropdown" class="settings-dropdown hidden">
+        <h4>Theme</h4>
+		<div class="theme-options">
+			<button id="blue-btn" type="button">🔵 Blue</button>
+			<button id="pink-btn" type="button">🌸 Pink</button>
+			<button id="light-btn" type="button">☀️ Light</button>
+			<button id="dark-btn" type="button">🌙 Dark</button>
+		</div>
+        <label class="custom-color">
+          🎨 Custom
+          <input type="color" id="color-picker" value="#f279a8" aria-label="Choose custom theme color">
+        </label>
+      </div>
+    </div>
+  </nav>
+
+  <!-- WELCOME CONTENT -->
+  <main class="content">
+    <div class="page-title">
+      <small>WELCOME</small>
+      <h1>How it works</h1>
+      <p>A quick tour of what you can do here.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number" aria-hidden="true">1</div>
+        <h2>Discover Art</h2>
+        <p>Browse the Gallery to see artwork from the community. Use the search bar or category filters to find something specific.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number" aria-hidden="true">2</div>
+        <h2>Publish Your Work</h2>
+        <p>Head to Create to upload your own artwork, add a title, description, and category. You'll need to log in first.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number" aria-hidden="true">3</div>
+        <h2>Save Your Favorites</h2>
+        <p>Found something you love? Tap the 🔖 Save button on any artwork in the Gallery, and find it later on your Saved page.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number" aria-hidden="true">4</div>
+        <h2>Make It Yours</h2>
+        <p>Open Settings and pick a theme — Pink, Light, Dark, or your own custom color — to make the site feel like home.</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="get-started-btn">Get Started →</a>
+  </main>
+
+  <!-- LOGIN / SIGN UP MODAL -->
+  <div id="loginModal" class="login-modal" aria-hidden="true">
+    <div class="login-box" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button id="closeLogin" class="login-close" aria-label="Close" type="button">×</button>
+      <h2 id="authTitle">Log in</h2>
+      <p id="authSubtitle">Welcome back, artist!</p>
+
+      <div id="emailGroup" class="input-group hidden">
+        <label for="emailInput">Email</label>
+        <input type="email" id="emailInput" class="form-input" placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" id="usernameInput" class="form-input" placeholder="Enter your username">
+      </div>
+
+      <div class="input-group">
+        <label for="passwordInput">Password</label>
+        <div class="password-box">
+          <input type="password" id="passwordInput" class="form-input" placeholder="Enter your password">
+          <button type="button" id="togglePassword" class="show-password" aria-label="Show password">👁</button>
+        </div>
+      </div>
+
+      <label class="remember-box">
+        <input type="checkbox" id="rememberMe"> Remember me
+      </label>
+
+      <button id="authBtn" class="auth-btn" type="button">Log in</button>
+
+      <p class="switch-auth">
+        <span id="switchText">Don't have an account?</span>
+        <button id="switchAuth" class="switch-btn" type="button">Sign up</button>
+      </p>
+
+      <!-- GOOGLE SIGN-IN -->
+      <div id="g_id_onload"
+           data-client_id="524948319860-o60q6ec6u6std3rkl76kmnel3na9e8e6.apps.googleusercontent.com"
+           data-callback="handleGoogleSignIn"></div>
+      <div class="g_id_signin" data-type="standard"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <!-- jwt-decode must load BEFORE loginjs.js (Google sign-in uses it) -->
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <script src="navjs.js" defer></script>
+  <script src="loginjs.js"></script>
+  <script src="themejs.js" defer></script>
+</body>
+</html>
