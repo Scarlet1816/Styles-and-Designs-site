@@ -1,8 +1,8 @@
 /* =========================================================
    savedcss.css — Saved Art page
    Depends on theme variables from sidebarcss.css
-   FIX: art modal z-index above sidebar + mobile-safe close button
-   Layout: on mobile the sidebar is a drawer (see sidebarcss.css)
+   Mobile: art modal scrolls internally so the comments
+   section and Post button are reachable.
    ========================================================= */
 
 /* =========================
@@ -446,13 +446,14 @@ body {
   }
 }
 
-/* =========================
-   RESPONSIVE — PHONE (Option C)
-   Content sits below the mobile top bar. Sidebar is a drawer.
-   ========================= */
+/* =========================================================
+   RESPONSIVE — PHONE
+   Content sits below the mobile top bar (see sidebarcss.css)
+   MODAL FIX: capped height + internal scroll so the comment
+   section and Post button are reachable.
+   ========================================================= */
 @media (max-width: 700px) {
 
-  /* No left margin — top bar handles the offset via padding-top */
   .content {
     margin-left: 0;
   }
@@ -473,25 +474,30 @@ body {
     font-size: 22px;
   }
 
-  /* ---------- ART MODAL: full width, below the top bar ---------- */
+  /* ---------- ART MODAL BACKDROP ---------- */
   .art-modal {
     padding: 15px;
     padding-top: calc(var(--topbar-height) + 20px);
     align-items: flex-start;
   }
 
+  /* ---------- ART MODAL CONTENT ----------
+     KEY FIX: cap height so the whole modal scrolls.
+     -------------------------------------- */
   .art-modal-content {
     width: 100%;
     max-width: 100%;
-    max-height: none;
+    max-height: calc(100vh - var(--topbar-height) - 40px);
     grid-template-columns: 1fr;
-    overflow-y: visible;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .modal-image {
-    min-height: 220px;
+    min-height: 180px;
     height: auto;
-    max-height: 45vh;
+    max-height: 40vh;
+    width: 100%;
   }
 
   .modal-info {
@@ -508,7 +514,12 @@ body {
     gap: 8px;
   }
 
-  /* ---------- CLOSE BUTTON: pin to viewport, below the top bar ---------- */
+  .modal-comment-list {
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  /* ---------- CLOSE BUTTON: pin to viewport ---------- */
   .close-modal {
     position: fixed;
     top: calc(var(--topbar-height) + 10px);

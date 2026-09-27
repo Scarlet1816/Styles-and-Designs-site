@@ -562,3 +562,45 @@ body {
     padding: 18px;
   }
 }
+/* =========================================================
+   FOLLOW BUTTON + NAME ROW
+   ========================================================= */
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.profile-name-row h1 {
+  margin: 0;
+}
+
+.follow-btn {
+  padding: 8px 18px;
+  background: var(--accent);
+  color: var(--text-color);
+  border: 3px solid var(--border-color);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.follow-btn:hover {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.follow-btn.following {
+  background: transparent;
+  color: var(--text-color);
+}
+
+.follow-btn.following:hover {
+  background: var(--accent);
+  color: #fff;
+}

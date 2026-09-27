@@ -1,8 +1,8 @@
 /* =========================================================
    indexcss.css — Gallery page
    Depends on theme variables from sidebarcss.css
-   FIX: art modal z-index above sidebar + mobile-safe close button
-   Layout: content sits below the top bar on mobile (see sidebarcss.css)
+   Mobile: art modal scrolls internally so the comments
+   section and Post button are reachable.
    ========================================================= */
 
 /* =========================
@@ -355,6 +355,7 @@ body {
   margin-bottom: 7px;
   font-family: inherit;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
 .modal-comment-input::placeholder {
@@ -445,13 +446,14 @@ body {
   }
 }
 
-/* =========================
-   RESPONSIVE — PHONE (modal fix)
-   Layout: content sits below the mobile top bar (no margin-left).
-   ========================= */
+/* =========================================================
+   RESPONSIVE — PHONE
+   Content sits below the mobile top bar (see sidebarcss.css)
+   MODAL FIX: capped height + internal scroll so the comment
+   section and Post button are reachable.
+   ========================================================= */
 @media (max-width: 700px) {
 
-  /* No left margin — the top bar handles the offset (see sidebarcss.css) */
   .content {
     margin-left: 0;
   }
@@ -468,27 +470,36 @@ body {
     font-size: 40px;
   }
 
-  /* ---------- ART MODAL: full width, no sidebar offset ---------- */
+  /* ---------- ART MODAL BACKDROP ---------- */
   .art-modal {
     padding: 15px;
     padding-top: calc(var(--topbar-height) + 20px);
     align-items: flex-start;
   }
 
+  /* ---------- ART MODAL CONTENT ----------
+     KEY FIX: cap height so the whole modal scrolls.
+     The image caps at 40vh; the rest (title, description,
+     stats, comments, input, post button) scrolls below it.
+     -------------------------------------- */
   .art-modal-content {
     width: 100%;
     max-width: 100%;
-    max-height: none;
+    max-height: calc(100vh - var(--topbar-height) - 40px);
     grid-template-columns: 1fr;
-    overflow-y: visible;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .modal-image {
-    min-height: 220px;
+    min-height: 180px;
     height: auto;
-    max-height: 45vh;
+    max-height: 40vh;
+    width: 100%;
   }
 
+  /* Info pane no longer needs its own scroll on mobile —
+     the whole modal scrolls together now. */
   .modal-info {
     padding: 20px;
     overflow-y: visible;
@@ -501,6 +512,12 @@ body {
   .modal-stats {
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  /* Comment list — let it grow naturally on mobile */
+  .modal-comment-list {
+    max-height: 40vh;
+    overflow-y: auto;
   }
 
   /* ---------- CLOSE BUTTON: pin to viewport ---------- */

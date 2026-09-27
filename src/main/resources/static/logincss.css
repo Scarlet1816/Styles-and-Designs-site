@@ -1,8 +1,8 @@
 /* =========================================================
    logincss.css — LOGIN / SIGN UP modal
    Depends on theme variables from sidebarcss.css
-   FIX: modal z-index above sidebar + mobile-safe close button
-   Layout: on mobile the sidebar is a drawer, so no left offset.
+   Mobile: login box scrolls internally so ALL content
+   (including the Google sign-in button) is reachable.
    ========================================================= */
 
 /* =========================
@@ -12,7 +12,7 @@
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 1550;              /* above sidebar (1100) */
+  z-index: 1550;
   background: rgba(0, 0, 0, 0.65);
   justify-content: center;
   align-items: center;
@@ -207,6 +207,23 @@
 }
 
 /* =========================
+   GOOGLE SIGN-IN
+   Reserve space so the button is visible even before the
+   GSI script finishes loading. Otherwise it collapses and
+   the user can't click it.
+   ========================= */
+#g_id_onload,
+.g_id_signin {
+  margin-top: 15px;
+}
+
+.g_id_signin {
+  display: flex;
+  justify-content: center;
+  min-height: 44px;
+}
+
+/* =========================
    GENERIC UTILITIES
    ========================= */
 .hidden {
@@ -235,24 +252,28 @@
 }
 
 /* =========================
-   MOBILE FIX (Option C)
+   MOBILE FIX
    =========================
-   On mobile the sidebar is a slide-in drawer, so we no longer
-   need to pad the left. The close button pins just below the
-   mobile top bar.
+   The login box now has a capped height and scrolls
+   internally, so everything (including Google sign-in at
+   the bottom) is reachable.
    ========================= */
 @media (max-width: 700px) {
 
   .login-modal {
     padding: 15px;
-    padding-top: calc(var(--topbar-height) + 20px);  /* leave room for the fixed close button + top bar */
+    padding-top: calc(var(--topbar-height) + 20px);
     align-items: flex-start;
   }
 
   .login-box {
     width: 100%;
     max-width: 100%;
-    max-height: none;
+
+    /* KEY FIX: cap height so the box scrolls internally */
+    max-height: calc(100vh - var(--topbar-height) - 40px);
+    overflow-y: auto;
+
     padding: 25px 20px;
   }
 
@@ -261,13 +282,13 @@
   }
 
   .login-close {
-    position: fixed;                                  /* stick to viewport, not modal */
+    position: fixed;
     top: calc(var(--topbar-height) + 10px);
     right: 12px;
     width: 48px;
     height: 48px;
     font-size: 28px;
-    z-index: 1600;                                    /* above everything */
+    z-index: 1600;
     box-shadow: 4px 4px 0 var(--border-color);
   }
 }
